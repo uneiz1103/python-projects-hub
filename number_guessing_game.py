@@ -22,4 +22,4 @@ while True:
         print(f"Congrulations you win")
         break
 
-print(attempts)
+print(f"Number of attempts:  {attempts}")
