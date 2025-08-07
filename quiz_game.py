@@ -29,4 +29,3 @@ for q in questions:
 
 print("\nQuiz Complete!")
 print(f"Your final score is: {score}/{len(questions)}")
-    
