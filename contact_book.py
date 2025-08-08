@@ -11,4 +11,16 @@ def add_contact():
     }
     print(f'Contact for {name} added sucessfully')
 
+def view_contacts():
+    if not contacts:
+        print("📭 No contacts found.\n")
+    else:
+        print("\n📒 Contact List:")
+        for name, info in contacts.items():
+            print(f"Name: {name}")
+            print(f"Phone: {info['phone']}")
+            print(f"Email: {info['email']}")
+            print("-" * 20)
+
 add_contact()
+view_contacts()
