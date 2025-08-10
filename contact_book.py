@@ -25,11 +25,19 @@ def view_contacts():
 def search_contact():
     name = input("Enter name to search: ").lower()
     if name in contacts:
-        print(f"\n🔍 Contact found for {name}:")
+        print(f"\nContact found for {name}:")
         print(f"Phone: {contacts[name]['phone']}")
         print(f"Email: {contacts[name]['email']}\n")
     else:
-        print(f"❌ Contact for '{name}' not found.\n")
+        print(f"Contact for '{name}' not found.\n")
+
+def delete_contact():
+    name = input("Enter name to delete: ").lower()
+    if name in contacts:
+        del contacts[name]
+        print(f"Contact for '{name}' deleted.\n")
+    else:
+        print(f"Contact for '{name}' not found.\n")
 
 
 add_contact()
