@@ -18,3 +18,14 @@ def add_expense():
     print('expense added successfully!\n')
 
 add_expense()
+
+def view_expenses():
+    if not expenses:
+        print('No expenses recorded yet.\n')
+        return
+    print('\n All Expenses ')
+    for i, exp in enumerate(expenses, start=1):
+        print(f"{i}. {exp['date']} | {exp['category']} | ₹{exp['amount']} | {exp['note']}")
+    print()
+
+view_expenses()
