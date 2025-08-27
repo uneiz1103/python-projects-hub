@@ -17,8 +17,6 @@ def add_expense():
     expenses.append(expense)
     print('expense added successfully!\n')
 
-add_expense()
-
 def view_expenses():
     if not expenses:
         print('No expenses recorded yet.\n')
@@ -28,4 +26,33 @@ def view_expenses():
         print(f"{i}. {exp['date']} | {exp['category']} | ₹{exp['amount']} | {exp['note']}")
     print()
 
-view_expenses()
+# Function to delete expense
+def delete_expense():
+    if not expenses:
+        print("No expenses to delete.\n")
+        return
+    
+    view_expenses()
+    try:
+        index = int(input("Enter the expense number to delete: ")) - 1
+        if 0 <= index < len(expenses):
+            deleted = expenses.pop(index)
+            print(f"Deleted: {deleted['category']} | ₹{deleted['amount']} | {deleted['note']}\n")
+        else:
+            print("Invalid expense number!\n")
+    except ValueError:
+        print("Please enter a valid number!\n")
+
+
+while True:
+    user_input = input('Enter 1 for add expense, enter 2 for view expense, enter 3 for exit: ')
+
+    if user_input == '1':
+        add_expense()
+    elif user_input == '2':
+        view_expenses()
+    elif user_input == '3':
+        print('Goodbye!')
+        break
+    else:
+        print('Invalid Input, please try again!')
