@@ -45,14 +45,16 @@ def delete_expense():
 
 
 while True:
-    user_input = input('Enter 1 for add expense, enter 2 for view expense, enter 3 for exit: ')
+    user_input = input('Enter 1 for add expense, enter 2 for view expense, enter 3 for delete expense , enter 4 to exit: ')
 
     if user_input == '1':
         add_expense()
     elif user_input == '2':
         view_expenses()
     elif user_input == '3':
-        print('Goodbye!')
+        delete_expense()
+    elif user_input == '4':
+        print('exit, Bye')
         break
     else:
         print('Invalid Input, please try again!')
