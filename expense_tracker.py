@@ -43,6 +43,35 @@ def delete_expense():
     except ValueError:
         print("Please enter a valid number!\n")
 
+def update_expense():
+    if not expenses:
+        print("No expenses to update.\n")
+        return
+    
+    view_expenses()
+    try:
+        index = int(input("Enter the expense number to update: ")) - 1
+        if 0 <= index < len(expenses):
+            print("Old Expense:", expenses[index])
+            
+            amount = float(input("Enter new amount: "))
+            category = input("Enter new category: ")
+            note = input("Enter new note: ")
+            date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+            expenses[index] = {
+                'amount': amount,
+                'category': category,
+                'note': note,
+                'date': date
+            }
+            print("Expense updated successfully!\n")
+        else:
+            print("Invalid expense number!\n")
+    except ValueError:
+        print("Please enter a valid number!\n")
+
+
 
 while True:
     user_input = input('Enter 1 for add expense, enter 2 for view expense, enter 3 for delete expense , enter 4 to exit: ')
@@ -54,6 +83,8 @@ while True:
     elif user_input == '3':
         delete_expense()
     elif user_input == '4':
+        update_expense()
+    elif user_input == '5':
         print('exit, Bye')
         break
     else:
