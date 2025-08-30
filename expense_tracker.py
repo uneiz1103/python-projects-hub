@@ -71,10 +71,19 @@ def update_expense():
     except ValueError:
         print("Please enter a valid number!\n")
 
-
+def total_expense(expenses):
+    total = sum(exp["amount"] for exp in expenses)
+    print(f"\n Total Expense = ₹{total}\n")
 
 while True:
-    user_input = input('Enter 1 for add expense, enter 2 for view expense, enter 3 for delete expense , enter 4 to exit: ')
+    print("Enter 1 to Add Expense")
+    print("Enter 2 to View Expenses")
+    print("Enter 3 to Delete Expense")
+    print("Enter 4 to Update Expense")
+    print("Enter 5 to View Total Expense")
+    print("Enter 6 to Exit")
+
+    user_input = input('Enter Your Choice: ')
 
     if user_input == '1':
         add_expense()
@@ -84,8 +93,10 @@ while True:
         delete_expense()
     elif user_input == '4':
         update_expense()
-    elif user_input == '5':
-        print('exit, Bye')
+    elif user_input == "5":
+        total_expense(expenses)
+    elif user_input == "6":
+        print("Goodbye!")
         break
     else:
-        print('Invalid Input, please try again!')
+        print("Invalid choice! Try again.\n")
