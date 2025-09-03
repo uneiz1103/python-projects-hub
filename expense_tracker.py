@@ -1,5 +1,23 @@
 import datetime
+import json
+import os
+
 expenses = []
+
+
+def load_from_file():
+    global expenses
+    if os.path.exists("expenses.json"):
+        with open("expenses.json", "r") as f:
+            expenses = json.load(f)
+    else:
+        expenses = []
+
+
+def save_to_file():
+    with open("expenses.json", "w") as f:
+        json.dump(expenses, f, indent=4)
+
 
 def add_expense():
     amount = float(input('Enter amount: '))
@@ -15,7 +33,8 @@ def add_expense():
     }
 
     expenses.append(expense)
-    print('expense added successfully!\n')
+    save_to_file()
+    print('Expense added successfully!\n')
 
 def view_expenses():
     if not expenses:
@@ -26,7 +45,6 @@ def view_expenses():
         print(f"{i}. {exp['date']} | {exp['category']} | ₹{exp['amount']} | {exp['note']}")
     print()
 
-# Function to delete expense
 def delete_expense():
     if not expenses:
         print("No expenses to delete.\n")
@@ -37,6 +55,7 @@ def delete_expense():
         index = int(input("Enter the expense number to delete: ")) - 1
         if 0 <= index < len(expenses):
             deleted = expenses.pop(index)
+            save_to_file()
             print(f"Deleted: {deleted['category']} | ₹{deleted['amount']} | {deleted['note']}\n")
         else:
             print("Invalid expense number!\n")
@@ -65,6 +84,7 @@ def update_expense():
                 'note': note,
                 'date': date
             }
+            save_to_file()
             print("Expense updated successfully!\n")
         else:
             print("Invalid expense number!\n")
@@ -74,6 +94,8 @@ def update_expense():
 def total_expense(expenses):
     total = sum(exp["amount"] for exp in expenses)
     print(f"\n Total Expense = ₹{total}\n")
+
+load_from_file() 
 
 while True:
     print("Enter 1 to Add Expense")
